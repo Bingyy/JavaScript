@@ -1,0 +1,172 @@
+
+<!Doctype html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body id="body">
+	<div class="header">
+		<h1> Learning JavaScript </h1>
+		<p> Time : 2018/11/15</p>
+	</div>
+	<div class="container">
+		<h1 id="heading"> Learning JS</h1>
+		<!-- <button onclick="showDate()"> Show Date</button>
+		<button onmouseover="showDate()" onmouseout="clearDate()"> Show Date </button>
+		<h1 id="time"> </h1> -->
+
+		<form method="post" aciton="something.php" name="myForm" onsubmit="return validateForm()">
+			<div>
+				<label>First Name</label>
+				<input type="text" name="firstName" id="firstName"/>
+			</div>
+			<br/>
+			<div>
+				<label>Last Name</label>
+				<input type="text" name="lastName" id="lastName" />
+			</div>
+			<br />
+
+			<div>
+				<label>Background</label>
+				<select name="background" id="background" onchange="changeBackground(this)">
+					<option value="red">Red</option>
+					<option value="blue">Blue</option>
+					<option value="green">Green</option>
+				</select>
+			</div>
+			<br />
+			<input type="submit" value="Submit" />
+			
+		</form>
+	</div>
+
+	<script>
+		/* 循环 */
+		var numbers = [1,2,3,4];
+		numbers.reverse();
+		numbers.forEach(function(number) {
+			console.log(number);
+		});
+
+		/* 条件 */
+		var a = 1;
+		var b = 3;
+		if(a == b) {
+			console.log("This is true");
+		} else {
+			console.log("This is false");
+		}
+
+		var fruit = "apple";
+
+		switch(fruit) {
+			case "banana":
+				alert("Hi Banana~");
+				break;
+			case "apple":
+				alert("Hi Apple~");
+				break;
+			case "orange":
+				alert("Hi Orange~");
+				break;
+			default:
+				alert("Hi, there is no fruit listed");
+				break;
+		}
+
+		/* 对象 */
+		var person = {
+			firstName: "BING",
+			lastName: "W",
+			age: 25,
+			address: {
+				city: "HZ",
+				state: "Zhe Jiang"
+			}
+		};
+		console.log(person.address.state);
+
+		/* 对象构造器 */
+		var apple = new Object(); // 构造一个空壳
+		apple.color = "red";
+		apple.shape = "round"; // 赋值即创造
+		apple.describe = function() {
+			return "An apple is the color " + this.color + " and is the shape " + this.shape;
+		}
+
+		// console.log(apple.describe());
+
+		/* Constructor Pattern */
+		function Fruit(name, color, shape) {
+			this.name = name;
+			this.color = color;
+			this.shape = shape;
+			// 定义函数
+			this.describe = function() {
+				return "A" + this.name + " is the color " + this.color + " and is the shape " + this.shape;
+			}
+		}
+
+		// // var apple = new Fruit("apple", "red", "round");
+		// var melon = new Fruit("melon", "green", "round");
+		// console.log(apple.describe());
+
+		/* 数组 + 对象 */
+		var users = [
+			{ 
+				name: "Ada",
+				age: 30
+			},
+			{
+				name: "Bob",
+				age: 25
+			},
+			{
+				name: "Cherry",
+				age: 26
+			}
+		];
+		console.log(users[0].name);
+
+		/* 事件 */
+		function changeText(id) {
+			// alert("You clicked");
+			id.innerHTML = "You Clicked";
+			var heading = document.getElementById("heading");
+			heading.innerHTML = "You Clicked";
+		}
+		function showDate() {
+			var time = document.getElementById("time");
+			time.innerHTML = new Date();
+		}
+
+		function clearDate() {
+			var time = document.getElementById("time");
+			time.innerHTML = '';
+		}
+
+		/* 表单 */
+		function changeBackground(x) {
+			console.log(x.value);
+			// var body = document.getElementById("body");
+			// body.style.background = x.value;
+			var heading = document.getElementById("heading");
+			heading.style.color = x.value; // JS使得界面可以动态变换
+		}
+		function validateForm() {
+			var firstName = document.forms["myForm"]["firstName"].value;
+			if(firstName == null || firstName == "") {
+				alert("First Name is required");
+				return false;
+			}
+			if(firstName.length < 3) {
+				alert("First Name must be at least 3 characters");
+				return false;
+			}
+		}
+
+	</script>
+</body>
+</html>
